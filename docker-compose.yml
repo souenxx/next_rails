@@ -11,6 +11,12 @@ services:
     ports:
       - '3307:3306'
 
+  redis:
+    image: redis:alpine
+    command: ['redis-server', '--bind', '0.0.0.0', '--port', '6379']
+    ports:
+      - '6379:6379'
+
   backend:
     build:
       context: project-backend
@@ -30,6 +36,8 @@ services:
       DB_HOST: db
       RAILS_MAX_THREADS: 5
       RAILS_ENV: development
+      CORS_ORIGINS: 'localhost:3000,127.0.0.1:3000'
+      REDIS_URL: redis://redis:6379
 
   frontend:
     build:
