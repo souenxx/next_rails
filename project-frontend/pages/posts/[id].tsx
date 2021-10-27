@@ -9,6 +9,9 @@ type PostPageProps={
 const PostPage: NextPage<PostPageProps>=({ id })=>(
   <div>
     <h1>POST</h1>
+      <Link href={`/posts/${id}/edit`}>
+        <button>Edit</button>
+      </Link>
     <PostItem id={id} />
     <hr />
     <Link href="/">
